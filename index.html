@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiệp Cưới Thanh Ngân & Quốc Dũng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --pink: #f4b7c2;
+        --pink-2: #e88ca8;
+        --cream: #fffaf7;
+        --text: #5a3d4a;
+        --muted: #7d6470;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        color: var(--text);
+        background: linear-gradient(135deg, #fff8fb 0%, #ffeef4 55%, #fff3f7 100%);
+        overflow-x: hidden;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100vh;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem 1rem 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05)),
+          url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80') center/cover;
+        filter: saturate(1.1) brightness(0.7);
+        z-index: 0;
+      }
+
+      .hero-card {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 780px;
+        padding: 3rem 2rem;
+        border-radius: 32px;
+        background: rgba(255, 250, 247, 0.8);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 18px 55px rgba(92, 58, 72, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        animation: floatIn 1.2s ease both;
+      }
+
+      .pre-title {
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        font-size: 0.8rem;
+        opacity: 0.8;
+        margin-bottom: 0.8rem;
+      }
+
+      .hero h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(2.8rem, 5vw, 4.6rem);
+        margin: 0.2rem 0 1rem;
+        color: #8b445b;
+      }
+
+      .hero .and {
+        font-size: 1.6rem;
+        margin: 0.2rem 0;
+        color: var(--pink-2);
+      }
+
+      .hero p {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin: 0 auto 1.2rem;
+        max-width: 620px;
+      }
+
+      .date-badge {
+        display: inline-block;
+        padding: 0.8rem 1.2rem;
+        margin-top: 1rem;
+        border-radius: 999px;
+        background: linear-gradient(45deg, var(--pink), var(--pink-2));
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(232, 140, 168, 0.25);
+      }
+
+      .section {
+        padding: 5rem 1.2rem;
+        position: relative;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: all 0.8s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(243, 183, 194, 0.45);
+        border-radius: 24px;
+        padding: 1.6rem;
+        box-shadow: 0 10px 30px rgba(145, 103, 120, 0.1);
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        font-size: 0.76rem;
+        color: var(--pink-2);
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+      }
+
+      h2 {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+        margin: 0 0 0.9rem;
+        color: #8d4560;
+      }
+
+      .muted {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .photos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .photos img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .timeline-item {
+        padding: 1.1rem 1.2rem;
+        border-left: 4px solid var(--pink);
+        background: rgba(255, 255, 255, 0.68);
+        border-radius: 14px;
+      }
+
+      .timeline-item strong {
+        display: block;
+        margin-bottom: 0.35rem;
+        color: #8b445b;
+      }
+
+      .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .box {
+        text-align: center;
+        padding: 1rem;
+        background: linear-gradient(145deg, #fff9fc, #ffe9f0);
+        border: 1px solid rgba(243, 183, 194, 0.45);
+        border-radius: 20px;
+        box-shadow: 0 10px 28px rgba(139, 68, 91, 0.12);
+      }
+
+      .box .number {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 700;
+        color: #8b445b;
+      }
+
+      .box .label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--muted);
+        margin-top: 0.25rem;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 18px;
+      }
+
+      .message {
+        text-align: center;
+        padding: 2rem 1rem;
+        border-radius: 24px;
+        background: linear-gradient(135deg, rgba(255, 245, 248, 0.9), rgba(255, 236, 244, 0.95));
+        box-shadow: 0 14px 34px rgba(142, 92, 109, 0.15);
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.85rem 1.2rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, var(--pink), var(--pink-2));
+        color: white;
+        box-shadow: 0 10px 24px rgba(232, 140, 168, 0.28);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--text);
+        border: 1px solid rgba(243, 183, 194, 0.45);
+      }
+
+      .floating-hearts {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .heart {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 1.5rem;
+        animation: drift 8s linear infinite;
+        opacity: 0.8;
+      }
+
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: translateY(24px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translate3d(0, 0, 0) scale(0.8);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(0, -100vh, 0) scale(1.1);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .intro-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .countdown {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 620px) {
+        .hero-card {
+          padding: 2rem 1rem;
+        }
+
+        .photos {
+          grid-template-columns: 1fr;
+        }
+
+        .countdown {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="floating-hearts" id="hearts"></div>
+
+      <section class="hero">
+        <div class="hero-card reveal">
+          <div class="pre-title">Thiệp mời đặc biệt</div>
+          <h1>Thanh Ngân</h1>
+          <div class="and">&</div>
+          <h1>Quốc Dũng</h1>
+          <p>
+            Chúng mình rất vui được mời bạn đến chung vui cùng những khoảnh khắc đẹp
+            nhất trong ngày vui trọng đại của hai đứa.
+          </p>
+          <div class="date-badge">21 • 23 THÁNG 07 NĂM 2026</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap intro-grid">
+          <div class="card reveal">
+            <div class="eyebrow">Một lời mời</div>
+            <h2>Đôi trái tim, một vòng tay</h2>
+            <p class="muted">
+              Từ những ngày đầu còn là những cô cậu học trò, chúng mình đã cùng nhau
+              viết nên câu chuyện tình yêu đầy yêu thương. Giờ đây, một chương mới sẽ
+              bắt đầu và chúng mình xin được chia sẻ niềm hạnh phúc này với bạn.
+            </p>
+            <div class="timeline">
+              <div class="timeline-item">
+                <strong>21/07/2026 · Lễ Vu Quy</strong>
+                Tại TDP Hà Tân, phường Tĩnh Gia, TP Thanh Hóa, lúc 08:10.
+              </div>
+              <div class="timeline-item">
+                <strong>23/07/2026 · Lễ Thành Hôn</strong>
+                Tại Nhà Hàng Sân Vườn, TDP Thanh Đình, phường Hải Thanh, Thanh Hóa, lúc 10:30.
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="eyebrow">Khoảnh khắc đáng nhớ</div>
+            <div class="photos">
+              <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" alt="Cặp đôi" />
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Cặp đôi bên nhau" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap reveal">
+          <div class="card" style="text-align:center;">
+            <div class="eyebrow">Đếm ngược</div>
+            <h2>Ngày cưới đang đến gần</h2>
+            <div class="countdown" id="countdown"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap reveal">
+          <div class="card">
+            <div class="eyebrow">Album tình yêu</div>
+            <div class="gallery">
+              <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Album 1" />
+              <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=900&q=80" alt="Album 2" />
+              <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Album 3" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap reveal">
+          <div class="message">
+            <div class="eyebrow">Mừng hạnh phúc</div>
+            <h2>Xin được đón tiếp bạn</h2>
+            <p class="muted">
+              Sự hiện diện của bạn là món quà ý nghĩa nhất. Hãy xác nhận để chúng mình
+              chuẩn bị một ngày vui trọn vẹn và ấm áp.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://maps.app.goo.gl/6B3J2spK2Bqts3Rx5" target="_blank" rel="noreferrer">📍 Chỉ đường lễ vu quy</a>
+              <a class="btn btn-secondary" href="https://maps.app.goo.gl/bNeaYmj8cqYi7WFU6" target="_blank" rel="noreferrer">📍 Chỉ đường lễ thành hôn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const heartsContainer = document.getElementById('hearts');
+
+      function spawnHearts() {
+        for (let i = 0; i < 16; i += 1) {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.innerHTML = '💗';
+          heart.style.left = `${Math.random() * 100}%`;
+          heart.style.top = `${Math.random() * 100}%`;
+          heart.style.animationDuration = `${7 + Math.random() * 5}s`;
+          heart.style.animationDelay = `${Math.random() * 2}s`;
+          heartsContainer.appendChild(heart);
+        }
+      }
+
+      spawnHearts();
+
+      const targetDate = new Date('2026-07-23T10:30:00').getTime();
+      const countdown = document.getElementById('countdown');
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const remaining = targetDate - now;
+
+        if (remaining <= 0) {
+          countdown.innerHTML = '<div class="box"><div class="number">00</div><div class="label">Ngày</div></div><div class="box"><div class="number">00</div><div class="label">Giờ</div></div><div class="box"><div class="number">00</div><div class="label">Phút</div></div><div class="box"><div class="number">00</div><div class="label">Giây</div></div>';
+          return;
+        }
+
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `
+          <div class="box"><div class="number">${String(days).padStart(2, '0')}</div><div class="label">Ngày</div></div>
+          <div class="box"><div class="number">${String(hours).padStart(2, '0')}</div><div class="label">Giờ</div></div>
+          <div class="box"><div class="number">${String(minutes).padStart(2, '0')}</div><div class="label">Phút</div></div>
+          <div class="box"><div class="number">${String(seconds).padStart(2, '0')}</div><div class="label">Giây</div></div>
+        `;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
+    </script>
+  </body>
+</html>
